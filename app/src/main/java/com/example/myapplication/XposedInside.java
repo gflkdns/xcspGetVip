@@ -2,7 +2,8 @@ package com.example.myapplication;
 
 import android.content.Context;
 
-import java.lang.reflect.Member;
+import com.example.myapplication.utils.L;
+
 import java.lang.reflect.Method;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -20,12 +21,9 @@ public class XposedInside implements IXposedHookLoadPackage {
                         @Override
                         protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 
-                            L.i("MD5 thisObject-Method---->" + (param.thisObject instanceof Method));
-                            L.i("MD5 thisObject-Class---->" + (param.thisObject instanceof Class));
-
-                            L.i("MD5 result---->" + param.getResult());
-                            L.i("MD5 args1---->" + param.args[0]);
-                            printStackTrace("MD5");
+                            L.i("【雷霆】MD5 result---->" + param.getResult());
+                            L.i("【雷霆】MD5 args1---->" + param.args[0]);
+//                            printStackTrace("MD5");
                         }
                     });
 
@@ -35,13 +33,37 @@ public class XposedInside implements IXposedHookLoadPackage {
                         @Override
                         protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 
-                            L.i("getCommParams result---->" + param.getResult());
-                            printStackTrace("getCommParams");
+                            L.i("【雷霆】getCommParams result---->" + param.getResult());
+//                            printStackTrace("getCommParams");
+
+
+                        }
+                    });
+        } else if ("com.blackhole.hd100".equals(lpparam.packageName)) {
+            XposedHelpers.findAndHookMethod("com.blackhole.hd100.ui.CommUrlApi", lpparam.classLoader, "MD5", String.class,
+                    new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+
+
+                            L.i("【黑洞】 result---->" + param.getResult());
+                            L.i("【黑洞】MD5 args1---->" + param.args[0]);
+                        }
+                    });
+
+
+            XposedHelpers.findAndHookMethod("com.blackhole.hd100.ui.CommUrlApi", lpparam.classLoader, "getCommParams", Context.class,
+                    new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+
+                            L.i("【黑洞】getCommParams result---->" + param.getResult());
 
 
                         }
                     });
         }
+
     }
 
     private void printStackTrace(String methodName) {
