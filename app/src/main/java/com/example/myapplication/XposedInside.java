@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.example.myapplication.utils.L;
 
-import java.lang.reflect.Method;
-
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
@@ -60,6 +58,37 @@ public class XposedInside implements IXposedHookLoadPackage {
                             L.i("【黑洞】getCommParams result---->" + param.getResult());
 
 
+                        }
+                    });
+        } else if ("com.honeybee.newapp".equals(lpparam.packageName)) {
+            XposedHelpers.findAndHookMethod("com.honeybee.newapp.ui.CommUrlApi", lpparam.classLoader, "MD5", String.class,
+                    new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+
+
+                            L.i("【蜜蜂303】MD5 result---->" + param.getResult());
+                            L.e("【蜜蜂303】MD5 args1---->" + param.args[0]);
+                        }
+                    });
+
+
+            XposedHelpers.findAndHookMethod("com.honeybee.newapp.ui.CommUrlApi", lpparam.classLoader, "getCommParams", Context.class,
+                    new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+
+                            L.w("【蜜蜂303】getCommParams result---->" + param.getResult());
+
+
+                        }
+                    });
+            XposedHelpers.findAndHookMethod("com.honeybee.newapp.ui.CommUrlApi", lpparam.classLoader, "getUniqueId", Context.class,
+                    new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+
+                            L.i("【蜜蜂303】getUniqueId result---->" + param.getResult());
                         }
                     });
         }
