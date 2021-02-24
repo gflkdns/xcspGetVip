@@ -19,8 +19,8 @@ public class XposedInside implements IXposedHookLoadPackage {
                         @Override
                         protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 
-                            L.i("【雷霆】MD5 result---->" + param.getResult());
-                            L.i("【雷霆】MD5 args1---->" + param.args[0]);
+                            L.i("【雷霆213】MD5 result---->" + param.getResult());
+                            L.i("【雷霆213】MD5 args1---->" + param.args[0]);
 //                            printStackTrace("MD5");
                         }
                     });
@@ -31,10 +31,18 @@ public class XposedInside implements IXposedHookLoadPackage {
                         @Override
                         protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 
-                            L.i("【雷霆】getCommParams result---->" + param.getResult());
+                            L.i("【雷霆213】getCommParams result---->" + param.getResult());
 //                            printStackTrace("getCommParams");
 
 
+                        }
+                    });
+            XposedHelpers.findAndHookMethod("com.leiting.lt100.ui.CommUrlApi", lpparam.classLoader, "getUniqueId", Context.class,
+                    new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+
+                            L.i("【雷霆213】getUniqueId result---->" + param.getResult());
                         }
                     });
         } else if ("com.blackhole.hd100".equals(lpparam.packageName)) {
@@ -44,8 +52,8 @@ public class XposedInside implements IXposedHookLoadPackage {
                         protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 
 
-                            L.i("【黑洞】 result---->" + param.getResult());
-                            L.i("【黑洞】MD5 args1---->" + param.args[0]);
+                            L.i("【黑洞402】 result---->" + param.getResult());
+                            L.i("【黑洞402】MD5 args1---->" + param.args[0]);
                         }
                     });
 
@@ -55,9 +63,18 @@ public class XposedInside implements IXposedHookLoadPackage {
                         @Override
                         protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 
-                            L.i("【黑洞】getCommParams result---->" + param.getResult());
+                            L.i("【黑洞402】getCommParams result---->" + param.getResult());
 
 
+                        }
+                    });
+
+            XposedHelpers.findAndHookMethod("com.blackhole.hd100.ui.CommUrlApi", lpparam.classLoader, "getUniqueId", Context.class,
+                    new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+
+                            L.i("【黑洞402】getUniqueId result---->" + param.getResult());
                         }
                     });
         } else if ("com.honeybee.newapp".equals(lpparam.packageName)) {
