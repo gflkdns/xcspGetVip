@@ -14,102 +14,79 @@ public class XposedInside implements IXposedHookLoadPackage {
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         L.i("inside XposedInside ...pkg: " + lpparam.packageName);
         if ("com.leiting.lt100".equals(lpparam.packageName)) {
-            XposedHelpers.findAndHookMethod("com.leiting.lt100.ui.CommUrlApi", lpparam.classLoader, "MD5", String.class,
-                    new XC_MethodHook() {
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-
-                            L.i("【雷霆213】MD5 result---->" + param.getResult());
-                            L.i("【雷霆213】MD5 args1---->" + param.args[0]);
-//                            printStackTrace("MD5");
-                        }
-                    });
-
-
-            XposedHelpers.findAndHookMethod("com.leiting.lt100.ui.CommUrlApi", lpparam.classLoader, "getCommParams", Context.class,
-                    new XC_MethodHook() {
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-
-                            L.i("【雷霆213】getCommParams result---->" + param.getResult());
-//                            printStackTrace("getCommParams");
-
-
-                        }
-                    });
-            XposedHelpers.findAndHookMethod("com.leiting.lt100.ui.CommUrlApi", lpparam.classLoader, "getUniqueId", Context.class,
-                    new XC_MethodHook() {
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-
-                            L.i("【雷霆213】getUniqueId result---->" + param.getResult());
-                        }
-                    });
+            hookVpn(lpparam, "com.leiting.lt100.ui.CommUrlApi", "雷霆213");
         } else if ("com.blackhole.hd100".equals(lpparam.packageName)) {
-            XposedHelpers.findAndHookMethod("com.blackhole.hd100.ui.CommUrlApi", lpparam.classLoader, "MD5", String.class,
-                    new XC_MethodHook() {
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-
-
-                            L.i("【黑洞402】 result---->" + param.getResult());
-                            L.i("【黑洞402】MD5 args1---->" + param.args[0]);
-                        }
-                    });
-
-
-            XposedHelpers.findAndHookMethod("com.blackhole.hd100.ui.CommUrlApi", lpparam.classLoader, "getCommParams", Context.class,
-                    new XC_MethodHook() {
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-
-                            L.i("【黑洞402】getCommParams result---->" + param.getResult());
-
-
-                        }
-                    });
-
-            XposedHelpers.findAndHookMethod("com.blackhole.hd100.ui.CommUrlApi", lpparam.classLoader, "getUniqueId", Context.class,
-                    new XC_MethodHook() {
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-
-                            L.i("【黑洞402】getUniqueId result---->" + param.getResult());
-                        }
-                    });
+            hookVpn(lpparam, "com.blackhole.hd100.ui.CommUrlApi", "黑洞402");
         } else if ("com.honeybee.newapp".equals(lpparam.packageName)) {
-            XposedHelpers.findAndHookMethod("com.honeybee.newapp.ui.CommUrlApi", lpparam.classLoader, "MD5", String.class,
-                    new XC_MethodHook() {
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+            //老包：com.honeybee.app
+            hookVpn(lpparam, "com.honeybee.newapp.ui.CommUrlApi", "蜜蜂303");
 
-
-                            L.i("【蜜蜂303】MD5 result---->" + param.getResult());
-                            L.e("【蜜蜂303】MD5 args1---->" + param.args[0]);
-                        }
-                    });
-
-
-            XposedHelpers.findAndHookMethod("com.honeybee.newapp.ui.CommUrlApi", lpparam.classLoader, "getCommParams", Context.class,
-                    new XC_MethodHook() {
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-
-                            L.w("【蜜蜂303】getCommParams result---->" + param.getResult());
-
-
-                        }
-                    });
-            XposedHelpers.findAndHookMethod("com.honeybee.newapp.ui.CommUrlApi", lpparam.classLoader, "getUniqueId", Context.class,
-                    new XC_MethodHook() {
-                        @Override
-                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-
-                            L.i("【蜜蜂303】getUniqueId result---->" + param.getResult());
-                        }
-                    });
+//            XposedHelpers.findAndHookMethod("com.honeybee.newapp.ui.CommUrlApi", lpparam.classLoader, "MD5", String.class,
+//                    new XC_MethodHook() {
+//                        @Override
+//                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+//
+//
+//                            L.i("【蜜蜂303】MD5 result---->" + param.getResult());
+//                            L.e("【蜜蜂303】MD5 args1---->" + param.args[0]);
+//                        }
+//                    });
+//
+//
+//            XposedHelpers.findAndHookMethod("com.honeybee.newapp.ui.CommUrlApi", lpparam.classLoader, "getCommParams", Context.class,
+//                    new XC_MethodHook() {
+//                        @Override
+//                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+//
+//                            L.w("【蜜蜂303】getCommParams result---->" + param.getResult());
+//
+//
+//                        }
+//                    });
+//            XposedHelpers.findAndHookMethod("com.honeybee.newapp.ui.CommUrlApi", lpparam.classLoader, "getUniqueId", Context.class,
+//                    new XC_MethodHook() {
+//                        @Override
+//                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+//
+//                            L.i("【蜜蜂303】getUniqueId result---->" + param.getResult());
+//                        }
+//                    });
         }
 
+    }
+
+    private void hookVpn(XC_LoadPackage.LoadPackageParam lpparam, String hookClassName, String channelName) {
+        XposedHelpers.findAndHookMethod(hookClassName, lpparam.classLoader, "MD5", String.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+
+                        L.i("[" + channelName + "] MD5 result---->" + param.getResult());
+                        L.i("[" + channelName + "] MD5 args1--->" + param.args[0]);
+//                        printStackTrace(channelName + ".MD5");
+                    }
+                });
+
+
+        XposedHelpers.findAndHookMethod(hookClassName, lpparam.classLoader, "getCommParams", Context.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+
+                        L.i("[" + channelName + "] getCommParams result---->" + param.getResult());
+//                        printStackTrace(channelName + ".getCommParams");
+                    }
+                });
+        XposedHelpers.findAndHookMethod(hookClassName, lpparam.classLoader, "getUniqueId", Context.class,
+                new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+
+
+                        L.i("[" + channelName + "] getUniqueId result---->" + param.getResult());
+//                        printStackTrace(channelName + ".getUniqueId");
+                    }
+                });
     }
 
     private void printStackTrace(String methodName) {
