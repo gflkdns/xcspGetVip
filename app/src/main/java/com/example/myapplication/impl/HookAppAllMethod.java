@@ -33,7 +33,7 @@ public class HookAppAllMethod {
 
     public static void hookMethod(LoadPackageParam loadPackageParam) {
         String pkgname = loadPackageParam.packageName;
-        if (FILTER_PKGNAME.equals(pkgname)) {
+        if (true) {
             //这里是为了解决app多dex进行hook的问题，Xposed默认是hook主dex
             XposedHelpers.findAndHookMethod(Application.class, "attach", Context.class, new XC_MethodHook() {
                 @Override
@@ -101,6 +101,7 @@ public class HookAppAllMethod {
     }
 
     private static void hookClassInfo(String className, ClassLoader classLoader) {
+        L.e(className);
         //过滤系统类名前缀
         if (TextUtils.isEmpty(className)) {
             return;
